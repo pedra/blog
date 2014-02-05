@@ -13,6 +13,7 @@ body { background: #000 url(image/bg2.jpg) 0 0 fixed; background-attachment: cov
 h1 { font-size: 3em}
 h2 { font-size: 2em}
 h3 { font-size: 1.5em}
+h1, h2, h3 {font-weight: normal}
 hr { margin: 20px 0}
 form * {display:block;}
 label {font-size: 0.8em; color:#666; font-weight: bold}
@@ -23,23 +24,65 @@ form a {display: inline; text-decoration: none; color:#039;}
 form a:hover { text-decoration: underline;}
 
 blockquote, blockquote *{ font-style: italic; font-family: 'PT Serif', Serif; color:#999;}
-blockquote {padding: 20px 0 30px 45px; background: url(image/aspas.gif) left 14px no-repeat}
+blockquote {padding: 20px 0 30px 35px; background: url(image/aspas.gif) left 14px no-repeat}
 blockquote b { font-weight: bold}
 
-.container {width:320px; margin:20px auto; padding:20px; background:#FFF; min-height:300px; box-shadow: 0 10px 20px #000}
+.container {width:800px; margin:0 auto; padding:20px; background:#FFF; min-height:300px; box-shadow: 0 10px 20px #000}
 
-/*Remover . . .*/
-.container {background-image: linear-gradient(to bottom, #FFF, #CCC); border-bottom-right-radius: 20px; border-top-left-radius: 20px;}
-.container h1, .container a {margin: 10px auto; text-align: center; text-decoration: none; display:block; width: 100%}
-.container a:hover { color: #890}
-.container h1 {color:#999;}
+/*TOP*/
+.top { width: 800px; margin: 10px auto;}
+.top *{color:#890;}
+.top img { height: 50px}
+.top .menu { float: right; margin: 6px 0 0 0}
+.top .menu * { text-decoration: none; padding: 10px; display: inline-block}
+.top .menu a:hover {color:#BC0;}
 
-/*Remover . . .*/
+
+
+/*Página "em breve"*/
+.comingsoon {width:320px; background-image: linear-gradient(to bottom, #FFF, #CCC); border-bottom-right-radius: 20px; border-top-left-radius: 20px;}
+.comingsoon h1, .comingsoon a {margin: 10px auto; text-align: center; text-decoration: none; display:block; width: 100%}
+.comingsoon a:hover { color: #890}
+.comingsoon h1 {color:#999;}
+.comingsoontop { width: 320px}
+
+/*Página de Blog*/
+.blog {}
+.blog img { float:left; width: 60%; margin: 5px 20px 10px 0; border:5px solid #FFF; box-shadow: 0 5px 10px #999}
+.blog a { text-decoration: none;}
+.blog h1 { margin: 0 0 30px 0}
+.blog .info { font-size: 0.8em; color: #999; font-style: italic; padding: 5px; background: #EEE}
+.blog h2 {margin: 20px 0; color:#000; text-shadow: 1px 2px #999 }
+
+.blog .posts {padding: 10px; margin: 10px 0; box-shadow: 0 1px 5px #CCC}
+.blog .posts:hover { box-shadow: 0 1px 15px #777}
+.blog .posts h2 {margin:0}
+.blog .posts a:hover { color: #03B}
+.blog .posts blockquote { background: #FFF; padding:0 }
+.blog .posts .info { background: none; font-size: 0.8em; padding: 5px 0 0 0;}
+
+/*Página de Usuários*/
+.user {}
+.user img { width: 300px; float:left; margin: 0 20px 0 0}
+.user h1 { margin:0 0 20px 0}
+.user div.sobre {color:#039; margin: 20px 0 0 0}
+
+.user .users { clear:both; display:block; height: 70px; padding: 10px; margin: 10px 0; box-shadow: 0 1px 5px #CCC}
+.user .users:hover { box-shadow: 0 1px 15px #777}
+.user .users img { width: 70px;}
+.user .users div { float: left; margin-left: 10px}
+
 
 .conteudo { padding:20px 5px; border:1px solid #DDD; min-height: 100px; color:#456}
 
-.footer { width: 320px; margin:20px auto; color: #FFF}
-.footer *{color:#FFF;}
+.footer { width: 840px; margin:20px auto; color: #FFF}
+.footer *{color:#890; text-decoration: none}
+.footer a:hover {color:#BC0}
+.comingsoonfooter {width:360px}
 .msg {clear:both; border:1px solid #F00; background:#FDC; color:#F00; padding: 10px; margin:20px 0;}
 
-.e404 { width: 630px; background-image: none}
+.e404 { width: 630px; background-image: none}/*Página "em breve"*/
+.comingsoon {width:320px; background-image: linear-gradient(to bottom, #FFF, #CCC); border-bottom-right-radius: 20px; border-top-left-radius: 20px;}
+.comingsoon h1, .comingsoon a {margin: 10px auto; text-align: center; text-decoration: none; display:block; width: 100%}
+.comingsoon a:hover { color: #890}
+.comingsoon h1 {color:#999;}

@@ -1,4 +1,9 @@
+AddDefaultCharset utf-8
+AddCharset utf-8 .html .css .js .xml .json .rss .atom
+AddType application/x-httpd-php phar
+FileETag INode MTime Size
+
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php?phpstarturl=$1 [QSA,L]
+RewriteRule ^(.*)$ index.php/$1 [QSA,L]

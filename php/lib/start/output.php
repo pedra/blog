@@ -1,6 +1,7 @@
 <?php
 
 namespace Lib\Start;
+use Lib\Start\Db\Conn as DB;
 use o;
 
 class Output {
@@ -9,8 +10,10 @@ class Output {
     private $content = '';
     
     
-    function __construct($content = ''){
+    function __construct($content = '', $log = true){
         $this->content = $content;
+        //Log in Db
+        if($log) $this->logIn('', 'DB');        
     }
  
     /* SEND
@@ -65,8 +68,13 @@ class Output {
        *
        * @return void
        */
-    function _debug($msg, $mode = 'log') {
-       $log = date('Y d m H i s').' | '.$msg;
+    function logIn($msg, $mode = 'file') {
+        if($mode == 'DB'){
+            $db = new DB();
+            $db->query("INSERT INTO ".o::log('table')." 
+                        (IP, REQUEST, AGENT, USER)
+                        VALUES ('".$_SERVER['REMOTE_ADDR']."', '".URL.REQST."', '".$_SERVER['HTTP_USER_AGENT']."', 0)");            
+        } elseif($mode == 'file') file_put_contents(o::log('file'), date('YdmHis').' | '.$msg);
     }
     
     /* Status Bar

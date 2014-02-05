@@ -1,35 +1,38 @@
 <?php
 
-class Main{
+class Main {
 
-
-	function index(){
-		//Carrega o layout 
-		$view = new View('layout');
+    function index($ano = 0, $mes = 0, $link = '') {
+        $ano = 0 + $ano;
+        if(trim($link) != '') return $this->post($ano, $mes, $link);
         
-        //Carrega a fatia superior do site
-        $view->load('head')
-                ->assign('title', 'Página Inicial');
+        //Sem argumentos?? Mostra página ComingSoon
+        if($ano == 0) return (new View('comingsoon'))->render(false);
         
-        //carrega a página "/html/comingsoon.html"
-        $view->load('comingsoon')
-                ->assign('titulo', 'Coming Soon');
-        
-        //Carrega a fatia inferior do site
-        $view->load('footer');
+        //Pegando a lista de postagens
+        $posts = (new Model\Post\Blog())->getArticleList($ano, $mes, $link);        
+        if($posts == '') $posts = 'Nenhuma postagem encontrada.';
         
         //Renderiza com zTag & Razor e retorna o HTML composto 
-        return $view->render(false);
-	}
+        return (new View('post/layout'))
+                ->assign('content', $posts)
+                ->render(false);
+    }
 
-	function teste($arg = ''){
-		//mostra a string na tela + argumento [ex.:  http://phps.tk/main/teste/argumento]
-		return 'Main::teste('.$arg.')';
-	}
+    function post($ano = 0, $mes = 0, $link = '') {
+        //Pegando a postage, se existe
+        $blog = new Model\Post\Blog();
+        $post = $blog->getArticleByLink($ano, $mes, $link);
+        if($post == false) $post = $blog->getArticleById($ano);
+        
+        return (new View('post/layout'))
+                ->assign('content', $post)
+                ->render(false);
+    }
 
-	function erro(){
-		//Mostra a view de ERRO 404
-		return (new View('404'))->render(false);
-	}
+    function erro() {
+        //Mostra a view de ERRO 404
+        return (new View('404'))->render(false);
+    }
 
-} 
+}

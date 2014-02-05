@@ -5,7 +5,7 @@ namespace Lib\Start;
 class Controller {
     
     //Parameters
-    private $url = 'url';
+    private $url = '';
     private $mask = array();
     private $path = '';
     private $controller = 'main';
@@ -53,7 +53,8 @@ class Controller {
     
         //finding a controller -------------------------------------
         $controller = strtolower((isset($url[0]) && $url[0] != '') ? $url[0] : $this->controller); //default
-        
+        $action = true; 
+                
         //passing control to the controller class
         $pathCtrl = $this->path . $controller . '.php';
         if (file_exists($pathCtrl)) {
@@ -64,19 +65,19 @@ class Controller {
         } elseif (file_exists($this->path . $this->controller . '.php')) {
             include $this->path . $this->controller . '.php';
             $controller = $this->controller;
-            array_unshift($url, $this->controller);
+            $action = false;
         } else return false;
 
-        
         //new controller
         $controller = ucfirst($controller);
         $this->controller = new $controller(); 
     
         //finding a action -----------------------------------------
-        $this->action = (isset($url[0]) && $url[0] != '' && method_exists($controller, $url[0])) 
-                    ? strtolower($url[0]) 
-                    : $this->action; //default
-        if(isset($url[0]) && $this->action == $url[0]) array_shift($url);
+        if($action == true 
+           && isset($url[0]) 
+           && $url[0] != '' 
+           && method_exists($controller, $url[0])) $this->action = strtolower($url[0]);
+        if(isset($url[0]) && $this->action == strtolower($url[0])) array_shift($url);
         
         //collecting parameters ------------------------------------
         if (!is_array($url)) $url = Array();

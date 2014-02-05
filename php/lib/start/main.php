@@ -1,6 +1,6 @@
 <?php
 //Defines for CORE
-defined('PHP')      || define('PHP', __DIR__ . '/');
+defined('PPHP')     || define('PPHP', dirname(dirname(__DIR__)) . '/');
 defined('LIB')      || define('LIB', PPHP . 'lib/');
 
 //Auxiliar Functions
@@ -24,8 +24,9 @@ class_alias('Lib\Start\Html\Doc', 'View');
 
 //Decode route and instantiate controller
 $controller = new Lib\Start\Controller(REQST, o::app('controller'));
-$controller->solve();
+$controller->setP404(false); //Page error404 enabled
+$content = ($controller->solve() == false) ? (new View('404'))->render() : $controller->run();
 
 //Template Engine
-$out = new Lib\Start\Output($controller->run());
+$out = new Lib\Start\Output($content);
 $out->send();//produce and display HTML
