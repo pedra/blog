@@ -127,8 +127,8 @@ class Conn {
 					COLLATE utf8_general_ci');
 
         $pdo->exec('CREATE TABLE IF NOT EXISTS users (
-					  ID int(10) unsigned NOT NULL COMMENT \'NUMERO DO CONCURSO\',
-					  ACERTO int(10) unsigned NOT NULL COMMENT \'ACERTADORES\',
+					  ID int(10) unsigned NOT NULL COMMENT \'indice\',
+					  ACCESS int(10) unsigned NOT NULL COMMENT \'Número de acessos\',
 					  D1 int(10) unsigned NOT NULL,
 					  D2 int(10) unsigned NOT NULL,
 					  D3 int(10) unsigned NOT NULL,
@@ -136,7 +136,7 @@ class Conn {
 					  D5 int(10) unsigned NOT NULL,
 					  D6 int(10) unsigned NOT NULL,
 					  PRIMARY KEY (ID)
-					) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT=\'Download do site da www.caixa.gov.br\'');
+					) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT=\'tabela de exemplo\'');
     }
 
 }
