@@ -1,7 +1,7 @@
 <?php
 
-namespace Lib\Start;
-use Lib\Start\Db\Conn as DB;
+namespace Start;
+use Start\Db\Conn as DB;
 use o;
 
 class Output {
@@ -10,7 +10,7 @@ class Output {
     private $content = '';
     
     
-    function __construct($content = '', $log = true){
+    function __construct($content = '', $log = false){
         $this->content = $content;
         //Log in Db
         if($log) $this->logIn('', 'DB');        
@@ -25,7 +25,8 @@ class Output {
         ob_start('ob_gzhandler');
         header('Expires: ' . gmdate('D, d M Y H:i:s', time() + 31536000) . ' GMT');
         header('Cache-Control: must_revalidate, public, max-age=31536000');
-        header('X-Framework: START PHP Framework - version 0.1');
+        header('Server: START/1.3.0');//for safety ...
+        header('X-Powered-By: START/1.3.0');//for safety ...
         exit($this->content . $this->statusBar());
     }
     

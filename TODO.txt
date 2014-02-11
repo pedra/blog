@@ -1,0 +1,10 @@
+TODO
+
+>>Usar design http://participate.webydo.com/forums/191312-participate-vote-
+    Cores firmes passa certeza, clean, robustez, facilidade de uso, simplicidade e modernidade.
+    Usa #000 sobre #FFF | Arial, Helvetica, Sans-serif | Cor de texto: #A7A7A7
+
+
+>> Criar Image Tools com http://canvas.daviferreira.com/
+    Features: upload assistent; crop, resize, insert text wathermark, criate 3 widths [thumbs/destaque/front-mini];
+              online resize image (http://site/image/2332hj3gd76/300/400 - show resize);

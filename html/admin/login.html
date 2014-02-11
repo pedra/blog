@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Administrator Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="@URL style/admin.css"  rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="container login">
+            <h1>Welcome!</h1>
+            
+            <form method="post" action="@URL admin/login">
+                <label>Login</label>
+                <input name="login" type="text" placeholder="digite seu login"/>
+                
+                <label>Senha</label>
+                <input name="passwd" type="password" />
+                
+                <button type="submit">Login</button>
+                <z:info class="alert" />
+            </form>
+        </div>
+    </body>
+</html>

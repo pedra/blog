@@ -1,6 +1,6 @@
 <?php
 namespace Model\User;
-use Lib\Start\Db\Conn as DB;
+use Start\Db\Conn as DB;
 /**
  * Description of user
  *
@@ -45,8 +45,26 @@ class User {
                     . '<div class="sobre">'
                     . '<h3>Apresentação</h3>'.$row->SOBRE.'</div>';            
         }
-        return false; 
+        return false;        
+    }
+    
+    //Loga um usuário
+    function login($login, $senha){
+        $db = new DB();
+        $db->query('SELECT * FROM USER '
+                . 'WHERE LOGIN = :login '
+                . 'AND SENHA = :senha', array('login'=>$login, 'senha'=>md5($senha)));
         
+        $row = $db->getLine(0);
+        if($row){
+            if(session_id() === '') session_start();
+            //Gravando na session
+            $_SESSION['user']['id'] = $row->ID;
+            $_SESSION['user']['nivel'] = $row->NIVEL;
+            $_SESSION['user']['nome'] = $row->NOME;
+            return true;
+        }
+        return false;
         
     }
 }

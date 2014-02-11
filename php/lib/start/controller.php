@@ -1,6 +1,6 @@
 <?php
 
-namespace Lib\Start;
+namespace Start;
 
 class Controller {
     
@@ -8,7 +8,7 @@ class Controller {
     private $url = '';
     private $mask = array();
     private $path = '';
-    private $controller = 'main';
+    private $controller = 'Main';
     private $action = 'index';
     private $parms = array();
     private $p404 = false;
@@ -22,70 +22,57 @@ class Controller {
     }
     
     //get/set parameters
-	function __call($nm, $arg){
-		$nm = strtolower($nm);
-		$arg = isset($arg[0]) ? $arg[0] : null;
-		$func = substr($nm, 0, 3);
-		$par = substr($nm, 3);
+    function __call($nm, $arg){
+            $nm = strtolower($nm);
+            $arg = isset($arg[0]) ? $arg[0] : null;
+            $func = substr($nm, 0, 3);
+            $par = substr($nm, 3);
 
-		//parameter exists?
-		if(isset($this->$par)){
-			if($func == 'set') {
-			    $this->$par = $arg;
-			    return $this;
-			}
-			if($func == 'get') return $this->$par; 
-		}
-		return false;
-	}
-    
+            //parameter exists?
+            if(isset($this->$par)){
+                    if($func == 'set') {
+                        $this->$par = $arg;
+                        return $this;
+                    }
+                    if($func == 'get') return $this->$par; 
+            }
+            return false;
+    }   
     
     
     /* SOLVE
      * Resolve Controller & Action & Parms by friendly url
      *
      */
-    function solve() {
+    function solve(){
         //breaking the url . . .
         $url = explode('/', trim($this->url, ' /').'/');
         
         //TODO: implement Mask function here!
+        $url = $this->solveMask($url);
     
-        //finding a controller -------------------------------------
-        $controller = strtolower((isset($url[0]) && $url[0] != '') ? $url[0] : $this->controller); //default
-        $action = true; 
-                
-        //passing control to the controller class
-        $pathCtrl = $this->path . $controller . '.php';
-        if (file_exists($pathCtrl)) {
-             include $pathCtrl;
-             if (isset($url[0]) && $controller == $url[0]) array_shift($url);
-        } elseif($this->p404) {
-            return false;   
-        } elseif (file_exists($this->path . $this->controller . '.php')) {
-            include $this->path . $this->controller . '.php';
-            $controller = $this->controller;
-            $action = false;
-        } else return false;
+        //finding Controller -----------------------------------------
+        if(isset($url[0]) && $url[0] != '' && file_exists($this->path . ucfirst($url[0]) . '.php')){
+            $this->controller = ucfirst($url[0]);
+            array_shift ($url);          
+        }
 
         //new controller
-        $controller = ucfirst($controller);
-        $this->controller = new $controller(); 
+        include PPHP.'Controller/'.$this->controller.'.php';
+        $this->controller = new $this->controller(); 
     
         //finding a action -----------------------------------------
-        if($action == true 
-           && isset($url[0]) 
-           && $url[0] != '' 
-           && method_exists($controller, $url[0])) $this->action = strtolower($url[0]);
-        if(isset($url[0]) && $this->action == strtolower($url[0])) array_shift($url);
+        if(isset($url[0]) && $url[0] != '' && method_exists($this->controller, $url[0])) {
+            $this->action = strtolower($url[0]);
+            array_shift($url);
+        }
         
         //collecting parameters ------------------------------------
-        if (!is_array($url)) $url = Array();
-        $this->parms = $url;
+        $this->parms = (!is_array($url) ? array() : $url);
 
         return $this;
     }
-    
+        
     
     /* RUN
      * Running the application front controller
@@ -103,6 +90,17 @@ class Controller {
     function addMask($mask, $result){
         $this->mask[$mask] = $result;
         return $this;
+    }
+    
+    /* SOLVEMASK
+     * 
+     * TODO ALL!
+     * 
+     */
+    private function solveMask($url){
+        
+        //TODO ?
+        return $url;
     }
 
 }

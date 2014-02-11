@@ -6,7 +6,7 @@
  */
 
 namespace Model\Post;
-use Lib\Start\Db\Conn as DB;
+use Start\Db\Conn as DB;
 
 /**
  * Description of blog

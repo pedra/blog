@@ -1,0 +1,19 @@
+/* Admin style file */
+
+@import url(http://fonts.googleapis.com/css?family=PT+Sans|PT+Serif+Caption|PT+Mono|PT+Serif|PT+Sans+Caption);
+@import url(lib/reset.css);
+
+
+* {font-family: "PT Sans", sans-serif}
+body { background: #000 url(image/bg2.jpg) 0 0 fixed; background-attachment: cover}
+
+form * {display: block}
+.login input { padding: 5px; border: 1px solid #DDD; border-radius: 4px; width: 200px; margin: 2px 0 20px 0;}
+.login label {margin: 0; padding: 0;}
+.login h1 {color:#F99; font-size: 4em}
+
+.login {width: 220px; margin:30px auto; min-height: 100px; padding:20px; 
+       background:#FFF; box-shadow: 0 10px 20px #000; border-bottom-right-radius: 30px; border-top-left-radius: 30px}
+
+
+

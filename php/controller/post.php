@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Description of post
  *
  * @author Bill Rocha <prbr@ymail.com at http://billrocha.tk>
  */
-class post {
+class Post {
     
     function index($id = 0){
         $id = 0 + $id;

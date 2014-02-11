@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Description of user
  *
  * @author Bill Rocha <prbr@ymail.com at http://billrocha.tk>
  */
-class user {
+class User {
     
     
     function index($id = 0){
