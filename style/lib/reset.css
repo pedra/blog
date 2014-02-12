@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* reset.css */
 html {margin:0;padding:0;border:0;}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
@@ -252,3 +253,8 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
+=======
+/* TODO: reset for CSS
+
+*/
+>>>>>>> 2ab83c998d4e21c231411c90cb7b1d882b1a443e
